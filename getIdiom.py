@@ -1,14 +1,17 @@
 import random
+import os
 
 def getIdiom():
     # read in the list of idioms
-    fl = open("source/idioms.txt",encoding="utf8")
+    idiomsFile = os.path.dirname(os.path.abspath(__file__)) + "/source/idioms.txt"
+    recentlyFile = os.path.dirname(os.path.abspath(__file__)) + "/source/recentlyUsed.txt"
+    fl = open(idiomsFile,encoding="utf8")
     lines = []
     for l in fl.readlines():
         lines.append(l.rstrip().split("|"))
 
     # eliminate those IDs that have recently been selected
-    fl = open("source/recentlyUsed.txt")
+    fl = open(recentlyFile)
     recentlyUsedID = []
     for l in fl.readlines():
         recentlyUsedID.append(l.rstrip())
@@ -26,7 +29,7 @@ def getIdiom():
     recentlyUsedID.append(ID)
 
     # write the new IDs to file
-    fl = open("source/recentlyUsed.txt", 'w')
+    fl = open(recentlyFile, 'w')
 
     for l in recentlyUsedID:
         fl.write(l+"\n")

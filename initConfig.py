@@ -1,4 +1,5 @@
 import configparser
+import os
 
 config = configparser.ConfigParser()
 config['Email'] = {}
@@ -12,5 +13,5 @@ config['keyring']['service'] = ''
 config['keyring']['username'] = ''
 config['keyring']['password'] = ''
 
-with open('source/config.ini','w') as configFile:
+with open(os.path.dirname(os.path.abspath(__file__))+'/source/config.ini','w') as configFile:
     config.write(configFile)

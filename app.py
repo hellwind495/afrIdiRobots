@@ -4,10 +4,11 @@ from datetime import datetime
 from datetime import timedelta
 
 import logging
+import os
 
 def oneRun():
 
-    logging.basicConfig(filename="source/afrIdiRobots.log",level=logging.DEBUG)
+    logging.basicConfig(filename=os.path.dirname(os.path.abspath(__file__))+"/source/afrIdiRobots.log",level=logging.DEBUG)
     logging.info("START: %s" % datetime.now())
 
     # get the message you want to send

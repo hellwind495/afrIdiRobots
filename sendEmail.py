@@ -1,7 +1,7 @@
 # Import smtplib for the actual sending function
 import smtplib
 import configparser
-import keyring
+import os
 
 # Import the email modules we'll need
 from email.mime.text import MIMEText
@@ -12,7 +12,8 @@ def sendEmail(subject, body):
     # with open(textfile) as fp:
         # Create a text/plain message
     config = configparser.ConfigParser()
-    config.read("source/config.ini")
+    configFile = os.path.dirname(os.path.abspath(__file__))+"/source/config.ini"
+    config.read(configFile)
     service = config["keyring"]["service"]
     username = config["keyring"]["username"]
     password = config["keyring"]["password"]
