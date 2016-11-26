@@ -1,5 +1,14 @@
-from getIdiom import getIdiom
+import configparser
+import os
+from APIConnectors.fbpageAPI import fbpageAPI
+
+config = configparser.ConfigParser()
+configFile = os.path.dirname(os.path.abspath(__file__))+"/source/config.ini"
+config.read(configFile)
 
 # test selection
-ID, idiom, meaning = getIdiom()
-print("The idiom's ID is: %s\nThe idiom is: %s\nThe idiom's meaning is: %s" % (ID, idiom, meaning))
+accesstoken = config["facebook"]["accesstoken"]
+pageid = config["facebook"]["pageid"]
+page = fbpageAPI(accesstoken, pageid)
+post_result = page.post("This is a python test")
+page.delete(post_result['id'])
