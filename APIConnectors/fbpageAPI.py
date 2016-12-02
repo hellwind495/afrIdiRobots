@@ -1,4 +1,5 @@
 import facebook
+import requests
 
 class fbpageAPI:
 
@@ -13,3 +14,9 @@ class fbpageAPI:
     def delete(self,post_id):
         graph = facebook.GraphAPI(access_token=self.access_token)
         graph.delete_object(post_id)
+
+    def generateNewToken(self,client_id, client_secret):
+        r = requests.get('https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&grant_type=fb_exchange_token&fb_exchange_token=%s' % (client_id,client_secret,self.access_token))
+        newtokenString = r.text
+        self.access_token = newtokenString.split('&')[0].split('=')[1]
+        return self.access_token
