@@ -15,6 +15,7 @@ client_id = facebook["client_id"]
 client_secret = facebook["client_secret"]
 fbPage = fbpageAPI(accesstoken, pageid)
 facebook["accesstoken"] = fbPage.generateNewToken(client_id=client_id,client_secret=client_secret)
+fbPage = fbpageAPI(accesstoken, pageid)
 
 # twitter connection
 twitter = config["twitter"]
@@ -23,3 +24,6 @@ custSecret = twitter["custSecret"]
 accessToken = twitter["accessToken"]
 acessSecret = twitter["accessSecret"]
 twitterStatus = twitterAPI(custKey,custSecret,accessToken,acessSecret)
+
+with open(os.path.dirname(os.path.abspath(__file__))+'/source/config.ini','w') as configFile:
+    config.write(configFile)
