@@ -1,6 +1,6 @@
 from getIdiom import getIdiom
 from sendEmail import sendEmail
-from configController import fbPage, twitter
+from configController import fbPage, twitterStatus
 from datetime import datetime
 from datetime import timedelta
 
@@ -19,16 +19,16 @@ def oneRun():
     # send the first email
     subject = "1/2 %s #Afrikaans" % idiom
     body = ""
-    twitter.post(subject)
+    twitterStatus.post(subject)
     # sendEmail(subject, body)
 
     # send the second email
     subject = "2/2 Betekenis: %s #Afrikaans" % meaning
-    twitter.post(subject)
+    twitterStatus.post(subject)
     # sendEmail(subject, body)
 
     # add a facebook post
-    message = "%s\nBetekenis: %s" % idiom, meaning
+    message = "%s\nBetekenis: %s" % (idiom, meaning)
     post_result = fbPage.post(message=message)
 
 # start the application
