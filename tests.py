@@ -8,12 +8,18 @@ config.read(configFile)
 
 # facebook test
 print('Starting facebook tests')
-post_result = fbPage.post("This is a python test")
-fbPage.delete(post_result['id'])
+try:
+    post_result = fbPage.post("This is a python test")
+    fbPage.delete(post_result['id'])
+except:
+    print('There is an issue with the Facebook API')
 
 # twitter test
 print('Starting twitter tests')
-post_result = twitterStatus.post("This is a python test")
-twitterStatus.delete(post_result.id)
+try:
+    post_result = twitterStatus.post("This is a python test")
+    twitterStatus.delete(post_result.id)
+except:
+    print('There is an issue with the Twitter API')
 
 print('All tests done!')

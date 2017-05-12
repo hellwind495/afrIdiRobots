@@ -14,8 +14,11 @@ pageid = facebook["pageid"]
 client_id = facebook["client_id"]
 client_secret = facebook["client_secret"]
 fbPage = fbpageAPI(accesstoken, pageid)
-facebook["accesstoken"] = fbPage.generateNewToken(client_id=client_id,client_secret=client_secret)
-fbPage = fbpageAPI(accesstoken, pageid)
+try:
+    facebook["accesstoken"] = fbPage.generateNewToken(client_id=client_id,client_secret=client_secret)
+    fbPage = fbpageAPI(accesstoken, pageid)
+except:
+    print('There is an issue obtaining a FB access token.')
 
 # twitter connection
 twitter = config["twitter"]
