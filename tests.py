@@ -22,4 +22,15 @@ try:
 except:
     print('There is an issue with the Twitter API')
 
+# twitter test on threading
+print('Starting threading test')
+try:
+    post_result = twitterStatus.post("This is the first part of the thread")
+    reply = twitterStatus.postToThread('This is the second part of the thread', \
+            in_reply_to_status_id = post_result.id)
+    twitterStatus.delete(post_result.id)
+    twitterStatus.delete(reply.id)
+except:
+    print('There is an issue with the Twitter threading')
+
 print('All tests done!')
