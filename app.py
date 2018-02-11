@@ -19,12 +19,12 @@ def oneRun():
     # send the first email
     subject = "1/2 %s #Afrikaans" % idiom
     body = ""
-    twitterStatus.post(subject)
+    post_result = twitterStatus.post(subject)
     # sendEmail(subject, body)
 
     # send the second email
     subject = "2/2 Betekenis: %s #Afrikaans" % meaning
-    twitterStatus.post(subject)
+    twitterStatus.postToThread(subject, in_reply_to_status_id = post_result.id)
     # sendEmail(subject, body)
 
     # add a facebook post
